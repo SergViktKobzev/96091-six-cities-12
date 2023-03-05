@@ -1,5 +1,6 @@
 {
   "eslint.workingDirectories": [
     "./project",
-  ]
+  ],
+  "liveServer.settings.port": 5501
 }
