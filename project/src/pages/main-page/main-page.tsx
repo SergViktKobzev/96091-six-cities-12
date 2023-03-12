@@ -1,10 +1,10 @@
-import Card from '../../components/card/card';
+import OfferCardCity from '../../components/offer-card-city/offer-card-city';
 
-type offerCountProps = {
+type OfferCountProps = {
   offerCount: number;
 };
 
-export default function MainPage({offerCount}: offerCountProps): JSX.Element {
+export default function MainPage({offerCount}: OfferCountProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -80,7 +80,7 @@ export default function MainPage({offerCount}: offerCountProps): JSX.Element {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{offerCount} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
+                <span className="places__sorting-caption">Sort by </span>
                 <span className="places__sorting-type" tabIndex={0}>
                   Popular
                   <svg className="places__sorting-arrow" width="7" height="4">
@@ -95,11 +95,11 @@ export default function MainPage({offerCount}: offerCountProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                <OfferCardCity />
+                <OfferCardCity />
+                <OfferCardCity />
+                <OfferCardCity />
+                <OfferCardCity />
               </div>
             </section>
             <div className="cities__right-section">
