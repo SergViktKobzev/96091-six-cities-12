@@ -1,4 +1,4 @@
-import OfferCard from '../offerCard/offer-card';
+import OfferCard from '../offer-card/offer-card';
 
 export default function OfferCardCity(): JSX.Element {
   return (
