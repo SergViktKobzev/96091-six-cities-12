@@ -1,9 +1,13 @@
 import OfferCardFavorites from '../../components/offer-card-favorites/offer-card-favorites';
 import {Link} from 'react-router-dom';
+import {Helmet} from 'react-helmet-async';
 
 export default function FavoritesPage(): JSX.Element {
   return (
     <>
+      <Helmet>
+        <title>6 cities favorites</title>
+      </Helmet>
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">

@@ -1,8 +1,12 @@
 import {Link} from 'react-router-dom';
+import {Helmet} from 'react-helmet-async';
 
 export default function LoginPage(): JSX.Element {
   return (
     <main className="page__main page__main--login">
+      <Helmet>
+        <title>6 cities login</title>
+      </Helmet>
       <div className="page__login-container container">
         <section className="login">
           <h1 className="login__title">Sign in</h1>

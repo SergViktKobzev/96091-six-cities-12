@@ -1,8 +1,12 @@
 import OfferCardNearby from '../../components/offer-card-nearby/offer-card-nearby';
+import {Helmet} from 'react-helmet-async';
 
 export default function RoomPage(): JSX.Element {
   return (
     <main className="page__main page__main--property">
+      <Helmet>
+        <title>6 cities room</title>
+      </Helmet>
       <section className="property">
         <div className="property__gallery-container container">
           <div className="property__gallery">
