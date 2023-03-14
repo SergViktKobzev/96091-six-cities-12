@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom';
+
 export default function OfferCard() {
   return (
     <div className="place-card__info">
@@ -20,7 +22,7 @@ export default function OfferCard() {
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="/#">Canal View Prinsengracht</a>
+        <Link to="/">Canal View Prinsengracht</Link>
       </h2>
       <p className="place-card__type">Apartment</p>
     </div>
