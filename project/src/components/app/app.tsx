@@ -2,23 +2,23 @@ import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import RoomPage from '../../pages/room-page/room-page';
-import NotFountPage from '../../pages/not-found-page/not-found-page';
+import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import Layout from '../../pages/layout/layout';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import {HelmetProvider} from 'react-helmet-async';
 
-type offerCountProps = {
+type OfferCountProps = {
   offerCount: number;
 };
 
-export default function App({offerCount}: offerCountProps): JSX.Element {
+export default function App({offerCount}: OfferCountProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoute.Main} element={<Layout />}>
+          <Route path={AppRoute.Main} element={<Layout authorizationStatus={AuthorizationStatus.NoAuth} />}>
             <Route index element={<MainPage offerCount={offerCount}/>} />
             <Route path={AppRoute.Login} element={<LoginPage />} />
             <Route path={AppRoute.Favorites} element={
@@ -28,7 +28,7 @@ export default function App({offerCount}: offerCountProps): JSX.Element {
             }
             />
             <Route path={AppRoute.Room} element={<RoomPage />} />
-            <Route path='*' element={<NotFountPage />} />
+            <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
