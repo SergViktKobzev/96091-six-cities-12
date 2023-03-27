@@ -21,7 +21,10 @@ export default function App({offerCount, offers, reviews}: OffersProps): JSX.Ele
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoute.Main} element={<Layout authorizationStatus={AuthorizationStatus.NoAuth} />}>
+          <Route
+            path={AppRoute.Main}
+            element={<Layout authorizationStatus={AuthorizationStatus.NoAuth} />}
+          >
             <Route index element={<MainPage offerCount={offerCount} offers={offers}/>} />
             <Route path={AppRoute.Login} element={<LoginPage />} />
             <Route path={AppRoute.Favorites} element={
