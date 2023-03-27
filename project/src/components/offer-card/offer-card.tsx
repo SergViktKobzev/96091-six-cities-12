@@ -1,12 +1,13 @@
-import {Link} from 'react-router-dom';
+import {generatePath, Link} from 'react-router-dom';
 import {Offer} from '../../types/offers';
+import {AppRoute} from '../../const';
 
 type OfferProps = {
   offer: Offer;
 };
 
 export default function OfferCard({offer}: OfferProps) {
-  const {price, title, type, rating, isFavorite} = offer;
+  const {price, title, type, rating, isFavorite, id} = offer;
   return (
     <div className="place-card__info">
       <div className="place-card__price-wrapper">
@@ -34,7 +35,7 @@ export default function OfferCard({offer}: OfferProps) {
         </div>
       </div>
       <h2 className="place-card__name">
-        <Link to="/">{title}</Link>
+        <Link to={generatePath(AppRoute.Room, {id: id.toString()})}>{title}</Link>
       </h2>
       <p className="place-card__type">{type}</p>
     </div>
