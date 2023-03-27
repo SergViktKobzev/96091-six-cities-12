@@ -1,6 +1,6 @@
 import {Offers} from '../types/offers';
 
-export const offers: Offers[] = [
+export const offers: Offers = [
   {
     city: {
       name: 'Dusseldorf',
@@ -28,7 +28,7 @@ export const offers: Offers[] = [
       'https://12.react.pages.academy/static/hotel/14.jpg'
     ],
     title: 'Wood and stone place',
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 4.4,
     type: 'room',
@@ -86,7 +86,7 @@ export const offers: Offers[] = [
       'https://12.react.pages.academy/static/hotel/15.jpg'
     ],
     title: 'Loft Studio in the Central Area',
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 3.7,
     type: 'room',
@@ -97,9 +97,9 @@ export const offers: Offers[] = [
       'Laptop friendly workspace'
     ],
     host: {
-      id: 25,
-      name: 'Angelina',
-      isPro: true,
+      id: 26,
+      name: 'Akulina',
+      isPro: false,
       avatarUrl: 'img/avatar-angelina.jpg'
     },
     description: 'I rent out a very sunny and bright apartment only 7 minutes walking distance to the metro station. The apartment has a spacious living room with a kitchen, one bedroom and a bathroom with mit bath. A terrace can be used in summer.',
@@ -157,7 +157,7 @@ export const offers: Offers[] = [
       'Towels'
     ],
     host: {
-      'id': 25,
+      'id': 27,
       name: 'Angelina',
       isPro: true,
       avatarUrl: 'img/avatar-angelina.jpg'
@@ -210,9 +210,9 @@ export const offers: Offers[] = [
       'Laptop friendly workspace'
     ],
     host: {
-      id: 25,
-      name: 'Angelina',
-      isPro: true,
+      id: 28,
+      name: 'Lina',
+      isPro: false,
       avatarUrl: 'img/avatar-angelina.jpg'
     },
     description: 'Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.',

@@ -1,11 +1,13 @@
-import OfferCardCity from '../../components/offer-card-city/offer-card-city';
+import OfferCardCityList from '../../components/offer-card-city-list/offer-card-city-list';
 import {Link} from 'react-router-dom';
+import {Offers} from '../../types/offers';
 
-type OfferCountProps = {
+type OfferProps = {
   offerCount: number;
+  offers: Offers;
 };
 
-export default function MainPage({offerCount}: OfferCountProps): JSX.Element {
+export default function MainPage({offerCount, offers}: OfferProps): JSX.Element {
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -65,13 +67,7 @@ export default function MainPage({offerCount}: OfferCountProps): JSX.Element {
                 <li className="places__option" tabIndex={0}>Top rated first</li>
               </ul>
             </form>
-            <div className="cities__places-list places__list tabs__content">
-              <OfferCardCity />
-              <OfferCardCity />
-              <OfferCardCity />
-              <OfferCardCity />
-              <OfferCardCity />
-            </div>
+            <OfferCardCityList offers={offers} />
           </section>
           <div className="cities__right-section">
             <section className="cities__map map"></section>

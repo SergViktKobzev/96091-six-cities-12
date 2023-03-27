@@ -8,26 +8,29 @@ import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import {HelmetProvider} from 'react-helmet-async';
+import {Offers, Reviews} from '../../types/offers';
 
-type OfferCountProps = {
+type OffersProps = {
   offerCount: number;
+  offers: Offers;
+  reviews: Reviews;
 };
 
-export default function App({offerCount}: OfferCountProps): JSX.Element {
+export default function App({offerCount, offers, reviews}: OffersProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route path={AppRoute.Main} element={<Layout authorizationStatus={AuthorizationStatus.NoAuth} />}>
-            <Route index element={<MainPage offerCount={offerCount}/>} />
+            <Route index element={<MainPage offerCount={offerCount} offers={offers}/>} />
             <Route path={AppRoute.Login} element={<LoginPage />} />
             <Route path={AppRoute.Favorites} element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-                <FavoritesPage />
+              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+                <FavoritesPage offers={offers} />
               </PrivateRoute>
             }
             />
-            <Route path={AppRoute.Room} element={<RoomPage />} />
+            <Route path={AppRoute.Room} element={<RoomPage offers={offers} />} />
             <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
           </Route>
         </Routes>
