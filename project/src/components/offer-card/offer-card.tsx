@@ -1,6 +1,7 @@
 import {generatePath, Link} from 'react-router-dom';
 import {Offer} from '../../types/offers';
 import {AppRoute} from '../../const';
+import {adaptRatingForRendering} from '../../utils/utils';
 
 type OfferProps = {
   offer: Offer;
@@ -30,7 +31,7 @@ export default function OfferCard({offer}: OfferProps) {
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">
-          <span style={{width: `${String(rating * 20)}%`}}></span>
+          <span style={{width: `${adaptRatingForRendering(rating)}%`}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import OfferCardListByCity from '../../components/offer-card-list-by-city/offer-card-list-by-city';
+import FavoriteOffersList from '../../components/favorite-offers-list/favorite-offers-list';
 import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 import {Offers} from '../../types/offers';
@@ -29,7 +29,7 @@ export default function FavoritesPage({offers}: FavoritesPageProps): JSX.Element
                       </Link>
                     </div>
                   </div>
-                  <OfferCardListByCity favoriteOffers={favoriteOffers} city={city} />
+                  <FavoriteOffersList favoriteOffers={favoriteOffers} city={city} />
                 </li>
               ))}
             </ul>

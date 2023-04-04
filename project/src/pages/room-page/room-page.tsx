@@ -4,6 +4,8 @@ import {Offers, Reviews} from '../../types/offers';
 import {useParams} from 'react-router-dom';
 import NotFoundPage from '../not-found-page/not-found-page';
 import ReviewsForm from '../../components/reviews-form/reviews-form';
+import {adaptRatingForRendering} from '../../utils/utils';
+import {MAX_NUMBER_OFFER_IMAGE} from '../../const';
 
 type OfferProps = {
   offers: Offers;
@@ -12,15 +14,15 @@ type OfferProps = {
 
 export default function RoomPage({offers, reviews}: OfferProps ): JSX.Element {
   const params = useParams();
-
-  const offer = offers.find((item) => String(item.id) === params.id);
-  if (offer === undefined) {
+  const currentId = Number(params.id);
+  const offer = offers.find((item) => item.id === currentId);
+  if (!offer) {
     return (<NotFoundPage />);
   }
 
   const {images, isPremium, isFavorite, title, rating, type, bedrooms, maxAdults, price, goods, host, description} = offer;
   const {name, isPro, avatarUrl} = host;
-  const propertyImages = images.slice(0, 6);
+  const propertyImages = images.slice(0, MAX_NUMBER_OFFER_IMAGE);
   return (
     <main className="page__main page__main--property">
       <Helmet>
@@ -59,7 +61,7 @@ export default function RoomPage({offers, reviews}: OfferProps ): JSX.Element {
             </div>
             <div className="property__rating rating">
               <div className="property__stars rating__stars">
-                <span style={{width: `${String(rating * 20)}%`}}></span>
+                <span style={{width: `${adaptRatingForRendering(rating)}%`}}></span>
                 <span className="visually-hidden">Rating</span>
               </div>
               <span className="property__rating-value rating__value">{rating}</span>
@@ -69,9 +71,7 @@ export default function RoomPage({offers, reviews}: OfferProps ): JSX.Element {
                 {type}
               </li>
               <li className="property__feature property__feature--bedrooms">
-                {(bedrooms > 1) ?
-                  `${bedrooms} Bedrooms` :
-                  `${bedrooms} Bedroom`}
+                {bedrooms} Bedrooms
               </li>
               <li className="property__feature property__feature--adults">
                   Max {maxAdults} adults
@@ -94,9 +94,11 @@ export default function RoomPage({offers, reviews}: OfferProps ): JSX.Element {
             <div className="property__host">
               <h2 className="property__host-title">Meet the host</h2>
               <div className="property__host-user user">
-                <div className={isPro ?
-                  'property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper' :
-                  'property__avatar-wrapper user__avatar-wrapper'}
+                <div className={
+                  isPro ?
+                    'property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper' :
+                    'property__avatar-wrapper user__avatar-wrapper'
+                }
                 >
                   <img className="property__avatar user__avatar" src={avatarUrl} width="74" height="74" alt="Host avatar" />
                 </div>

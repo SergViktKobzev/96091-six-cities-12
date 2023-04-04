@@ -23,7 +23,7 @@ export default function App({offerCount, offers, reviews}: OffersProps): JSX.Ele
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<Layout authorizationStatus={AuthorizationStatus.NoAuth} />}
+            element={<Layout />}
           >
             <Route index element={<MainPage offerCount={offerCount} offers={offers}/>} />
             <Route path={AppRoute.Login} element={<LoginPage />} />

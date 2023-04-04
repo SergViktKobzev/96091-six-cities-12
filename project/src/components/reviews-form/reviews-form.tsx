@@ -3,7 +3,7 @@ import {RATING_STARS_COUNT, RATING_TITLES} from '../../const';
 
 export default function ReviewsForm(): JSX.Element {
 
-  const [NewReview, setNewReview] = useState({
+  const [newReview, setNewReview] = useState({
     rating: 0,
     comment: '',
   });
@@ -16,7 +16,7 @@ export default function ReviewsForm(): JSX.Element {
           <React.Fragment key={index}>
             <input
               onChange={(evt) => {
-                setNewReview({...NewReview, rating: Number(evt.target.value)});
+                setNewReview({...newReview, rating: Number(evt.target.value)});
               }}
               className="form__rating-input visually-hidden"
               name="rating"
@@ -38,12 +38,12 @@ export default function ReviewsForm(): JSX.Element {
       </div>
       <textarea
         onChange={(evt) => {
-          setNewReview({...NewReview, comment: evt.target.value});
+          setNewReview({...newReview, comment: evt.target.value});
         }}
         className="reviews__textarea form__textarea"
         id="review"
         name="review"
-        value={NewReview.comment}
+        value={newReview.comment}
         placeholder="Tell how was your stay, what you like and what can be improved"
       >
       </textarea>

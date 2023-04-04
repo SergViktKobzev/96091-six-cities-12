@@ -1,17 +1,18 @@
 import {Link} from 'react-router-dom';
-import { Offers } from '../../types/offers';
+import {Offers} from '../../types/offers';
+import {adaptRatingForRendering} from '../../utils/utils';
 
-type OfferCardFavoritesProps = {
+type FavoriteOffersListProps = {
   favoriteOffers: Offers;
   city: string;
 };
 
-export default function OfferCardListByCity({favoriteOffers, city}: OfferCardFavoritesProps): JSX.Element {
-  const favoriteOffersByCity: Offers = favoriteOffers.filter((offer) => offer.city.name === city);
+export default function FavoriteOffersList({favoriteOffers, city}: FavoriteOffersListProps): JSX.Element {
+  const favoriteOffersList: Offers = favoriteOffers.filter((offer) => offer.city.name === city);
   return (
     <div className="favorites__places">
       {
-        favoriteOffersByCity.map((offer) => (
+        favoriteOffersList.map((offer) => (
           <article key={offer.id} className="favorites__card place-card">
             {offer.isPremium ?
               <div className="place-card__mark">
@@ -38,7 +39,7 @@ export default function OfferCardListByCity({favoriteOffers, city}: OfferCardFav
               </div>
               <div className="place-card__rating rating">
                 <div className="place-card__stars rating__stars">
-                  <span style={{width: `${String(offer.rating * 20)}%`}}></span>
+                  <span style={{width: `${adaptRatingForRendering(offer.rating)}%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
               </div>
