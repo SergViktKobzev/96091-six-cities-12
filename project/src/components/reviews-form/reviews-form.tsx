@@ -23,6 +23,7 @@ export default function ReviewsForm(): JSX.Element {
               value={RATING_STARS_COUNT - index}
               id={`${RATING_STARS_COUNT - index}-stars`}
               type="radio"
+              checked={newReview.rating === (RATING_STARS_COUNT - index)}
             />
             <label
               htmlFor={`${RATING_STARS_COUNT - index}-stars`}
