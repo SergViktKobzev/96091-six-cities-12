@@ -1,8 +1,9 @@
 import {Helmet} from 'react-helmet-async';
+import cl from './not-found.module.css';
 
 export default function NotFoundPage(): JSX.Element {
   return(
-    <div className="page page--gray">
+    <div className={cl.container}>
       <Helmet>
         <title>6 cities not found page</title>
       </Helmet>
