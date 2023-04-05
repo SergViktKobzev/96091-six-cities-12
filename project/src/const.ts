@@ -6,6 +6,13 @@ export enum AppRoute {
   NotFound = '*',
 }
 
+export enum LayoutClassName {
+  Main = 'page page--gray page--main',
+  Login = 'page page--gray page--login',
+  FavoritesEmpty = 'page page--favorites-empty',
+  Default = 'page',
+}
+
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',

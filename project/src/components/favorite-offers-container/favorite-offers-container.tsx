@@ -5,10 +5,11 @@ import FavoriteOffersList from '../favorite-offers-list/favorite-offers-list';
 
 type FavoriteOffersContainerProps = {
   favoriteOffers: Offers;
-  cities: string[];
 };
 
-export default function FavoriteOffersContainer({favoriteOffers, cities}: FavoriteOffersContainerProps): JSX.Element {
+export default function FavoriteOffersContainer({favoriteOffers}: FavoriteOffersContainerProps): JSX.Element {
+  const cities = Array.from(new Set(favoriteOffers.map((offer) => offer.city.name)));
+
   return (
     <section className="favorites">
       <h1 className="favorites__title">Saved listing</h1>
