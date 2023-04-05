@@ -1,53 +1,36 @@
-import OfferCardFavorites from '../../components/offer-card-favorites/offer-card-favorites';
-import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
+import {Offers} from '../../types/offers';
+import FavoriteOffersContainer from '../../components/favorite-offers-container/favorite-offers-container';
+import FavoriteOffersContainerEmpty from '../../components/favorite-offers-container-empty/favorite-offers-container-empty';
+import {useMemo} from 'react';
 
-export default function FavoritesPage(): JSX.Element {
+type FavoritesPageProps = {
+  offers: Offers;
+};
+
+export default function FavoritesPage({offers}: FavoritesPageProps): JSX.Element {
+  const favoriteOffers = useMemo(() => (
+    offers.filter((offer) => offer.isFavorite)
+  ), [offers]);
+  const favoriteOffersCount = favoriteOffers.length;
+
+  const className = favoriteOffersCount ?
+    'page__main page__main--favorites' :
+    'page__main page__main--favorites page__main--favorites-empty';
   return (
     <>
       <Helmet>
         <title>6 cities favorites</title>
       </Helmet>
-      <main className="page__main page__main--favorites">
+      <main className={className}>
         <div className="page__favorites-container container">
-          <section className="favorites">
-            <h1 className="favorites__title">Saved listing</h1>
-            <ul className="favorites__list">
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <Link className="locations__item-link" to="/">
-                      <span>Amsterdam</span>
-                    </Link>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  <OfferCardFavorites />
-                  <OfferCardFavorites />
-                </div>
-              </li>
-
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <Link className="locations__item-link" to="/">
-                      <span>Cologne</span>
-                    </Link>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  <OfferCardFavorites />
-                </div>
-              </li>
-            </ul>
-          </section>
+          {
+            favoriteOffersCount ?
+              <FavoriteOffersContainer favoriteOffers={favoriteOffers} /> :
+              <FavoriteOffersContainerEmpty />
+          }
         </div>
       </main>
-      <footer className="footer container">
-        <Link className="footer__logo-link" to="main.html">
-          <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
-        </Link>
-      </footer>
     </>
   );
 }

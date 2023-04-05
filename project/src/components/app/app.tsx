@@ -2,33 +2,39 @@ import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import RoomPage from '../../pages/room-page/room-page';
-import NotFountPage from '../../pages/not-found-page/not-found-page';
+import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import Layout from '../../pages/layout/layout';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import {HelmetProvider} from 'react-helmet-async';
+import {Offers, Reviews} from '../../types/offers';
 
-type offerCountProps = {
+type OffersProps = {
   offerCount: number;
+  offers: Offers;
+  reviews: Reviews;
 };
 
-export default function App({offerCount}: offerCountProps): JSX.Element {
+export default function App({offerCount, offers, reviews}: OffersProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoute.Main} element={<Layout />}>
-            <Route index element={<MainPage offerCount={offerCount}/>} />
+          <Route
+            path={AppRoute.Main}
+            element={<Layout offers={offers} />}
+          >
+            <Route index element={<MainPage offerCount={offerCount} offers={offers}/>} />
             <Route path={AppRoute.Login} element={<LoginPage />} />
             <Route path={AppRoute.Favorites} element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-                <FavoritesPage />
+              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+                <FavoritesPage offers={offers} />
               </PrivateRoute>
             }
             />
-            <Route path={AppRoute.Room} element={<RoomPage />} />
-            <Route path='*' element={<NotFountPage />} />
+            <Route path={AppRoute.Room} element={<RoomPage offers={offers} reviews={reviews} />} />
+            <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
