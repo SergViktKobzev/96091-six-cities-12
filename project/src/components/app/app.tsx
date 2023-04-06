@@ -11,12 +11,11 @@ import {HelmetProvider} from 'react-helmet-async';
 import {Offers, Reviews} from '../../types/offers';
 
 type OffersProps = {
-  offerCount: number;
   offers: Offers;
   reviews: Reviews;
 };
 
-export default function App({offerCount, offers, reviews}: OffersProps): JSX.Element {
+export default function App({offers, reviews}: OffersProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -25,7 +24,7 @@ export default function App({offerCount, offers, reviews}: OffersProps): JSX.Ele
             path={AppRoute.Main}
             element={<Layout offers={offers} />}
           >
-            <Route index element={<MainPage offerCount={offerCount} offers={offers}/>} />
+            <Route index element={<MainPage offers={offers}/>} />
             <Route path={AppRoute.Login} element={<LoginPage />} />
             <Route path={AppRoute.Favorites} element={
               <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>

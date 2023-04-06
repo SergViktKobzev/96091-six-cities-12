@@ -2,16 +2,15 @@ import {Offers} from '../../types/offers';
 import OfferCardCityList from '../offer-card-city-list/offer-card-city-list';
 
 type OfferCardContainerProps = {
-  offerCount: number;
   offers: Offers;
 };
 
-export default function OfferCardContainer({offerCount, offers}: OfferCardContainerProps): JSX.Element {
+export default function OfferCardContainer({offers}: OfferCardContainerProps): JSX.Element {
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">{offerCount} places to stay in Amsterdam</b>
+        <b className="places__found">{offers.length} places to stay in Amsterdam</b>
         <form className="places__sorting" action="#" method="get">
           <span className="places__sorting-caption">Sort by </span>
           <span className="places__sorting-type" tabIndex={0}>

@@ -4,12 +4,11 @@ import OfferCardContainer from '../../components/offer-card-container/offer-card
 import OfferCardContainerEmpty from '../../components/offer-card-container-empty/offer-card-container-empty';
 
 type OfferProps = {
-  offerCount: number;
   offers: Offers;
 };
 
-export default function MainPage({offerCount, offers}: OfferProps): JSX.Element {
-  const className = offerCount ?
+export default function MainPage({offers}: OfferProps): JSX.Element {
+  const className = offers.length ?
     'page__main page__main--index' :
     'page__main page__main--index page__main--index-empty';
 
@@ -54,8 +53,8 @@ export default function MainPage({offerCount, offers}: OfferProps): JSX.Element 
       </div>
       <div className="cities">
         {
-          offerCount ?
-            <OfferCardContainer offerCount={offerCount} offers={offers} /> :
+          offers.length ?
+            <OfferCardContainer offers={offers} /> :
             <OfferCardContainerEmpty />
         }
       </div>
