@@ -21,6 +21,12 @@ export enum AuthorizationStatus {
 
 export const RATING_STARS_COUNT = 5;
 
-export const RATING_TITLES = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
+export const RATING_TITLES = [
+  { rating: 5, title: 'perfect' },
+  { rating: 4, title: 'good' },
+  { rating: 3, title: 'not bad' },
+  { rating: 2, title: 'badly' },
+  { rating: 1, title: 'terribly' },
+];
 
 export const MAX_NUMBER_OFFER_IMAGE = 6;

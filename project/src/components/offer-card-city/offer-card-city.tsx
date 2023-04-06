@@ -9,11 +9,11 @@ type OfferProps = {
 
 export default function OfferCardCity({offer}: OfferProps): JSX.Element {
   const [idActiveOfferCard, setIdActiveOfferCard] = useState(offer.id);
-  const offerCardMouseOverHandler = (): void => {
+  const handleOfferCardMouseOver = (): void => {
     setIdActiveOfferCard(offer.id);
   };
   return (
-    <article onMouseOver={offerCardMouseOverHandler} className="cities__card place-card">
+    <article onMouseOver={handleOfferCardMouseOver} className="cities__card place-card">
       {offer.isPremium ?
         <div className="place-card__mark">
           <span>Premium</span>

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {RATING_STARS_COUNT, RATING_TITLES} from '../../const';
+import {RATING_TITLES} from '../../const';
 
 export default function ReviewsForm(): JSX.Element {
 
@@ -12,23 +12,23 @@ export default function ReviewsForm(): JSX.Element {
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        {Array.from({length: RATING_STARS_COUNT}, (_, index) => (
-          <React.Fragment key={index}>
+        {RATING_TITLES.map(({ rating, title }) => (
+          <React.Fragment key={rating}>
             <input
               onChange={(evt) => {
                 setNewReview({...newReview, rating: Number(evt.target.value)});
               }}
               className="form__rating-input visually-hidden"
               name="rating"
-              value={RATING_STARS_COUNT - index}
-              id={`${RATING_STARS_COUNT - index}-stars`}
+              value={rating}
+              id={`${rating}-stars`}
               type="radio"
-              checked={newReview.rating === (RATING_STARS_COUNT - index)}
+              checked={newReview.rating === rating}
             />
             <label
-              htmlFor={`${RATING_STARS_COUNT - index}-stars`}
+              htmlFor={`${rating}-stars`}
               className="reviews__rating-label form__rating-label"
-              title={RATING_TITLES[index]}
+              title={title}
             >
               <svg className="form__star-image" width="37" height="33">
                 <use xlinkHref="#icon-star"></use>
