@@ -1,5 +1,6 @@
 import {Offers} from '../../types/offers';
 import OfferCardCityList from '../offer-card-city-list/offer-card-city-list';
+import Map from '../map/map';
 
 type OfferCardContainerProps = {
   offers: Offers;
@@ -29,7 +30,7 @@ export default function OfferCardContainer({offers}: OfferCardContainerProps): J
         <OfferCardCityList offers={offers} />
       </section>
       <div className="cities__right-section">
-        <section className="cities__map map"></section>
+        <Map />
       </div>
     </div>
   );
