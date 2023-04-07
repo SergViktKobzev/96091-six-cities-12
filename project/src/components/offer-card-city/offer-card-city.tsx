@@ -1,19 +1,18 @@
 import OfferCard from '../offer-card/offer-card';
 import {Link} from 'react-router-dom';
 import {Offer} from '../../types/offers';
-import {useState} from 'react';
 
 type OfferProps = {
   offer: Offer;
+  onMouseOver: (activeOfferCard: number) => void;
 };
 
-export default function OfferCardCity({offer}: OfferProps): JSX.Element {
-  const [idActiveOfferCard, setIdActiveOfferCard] = useState(offer.id);
-  const handleOfferCardMouseOver = (): void => {
-    setIdActiveOfferCard(offer.id);
+export default function OfferCardCity({offer, onMouseOver}: OfferProps): JSX.Element {
+  const handleMouseOver = (): void => {
+    onMouseOver(offer.id);
   };
   return (
-    <article onMouseOver={handleOfferCardMouseOver} className="cities__card place-card">
+    <article onMouseOver={handleMouseOver} className="cities__card place-card">
       {offer.isPremium ?
         <div className="place-card__mark">
           <span>Premium</span>
