@@ -34,7 +34,12 @@ export default function OfferCardContainer({offers}: OfferCardContainerProps): J
         <OfferCardList offers={offers} variant={OfferCardVariant.Cities} onMouseOver={setActiveOfferCard} />
       </section>
       <div className="cities__right-section">
-        <Map activeOfferCard={activeOfferCard}/>
+        <Map
+          city={offers[0].city}
+          offers={offers}
+          variant={OfferCardVariant.Cities}
+          activeOfferCard={activeOfferCard}
+        />
       </div>
     </div>
   );

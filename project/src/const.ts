@@ -31,6 +31,11 @@ export enum OfferCardImageClassName {
   Favorites = 'favorites__image-wrapper place-card__image-wrapper',
 }
 
+export enum MapClassName {
+  Cities = 'cities__map map',
+  Room = 'property__map map',
+}
+
 export enum OfferCardVariant {
   Cities = 'Cities',
   Near = 'Near',

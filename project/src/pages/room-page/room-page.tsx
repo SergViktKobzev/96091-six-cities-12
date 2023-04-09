@@ -6,6 +6,7 @@ import ReviewsForm from '../../components/reviews-form/reviews-form';
 import {adaptRatingForRendering} from '../../utils/utils';
 import {MAX_NUMBER_OFFER_IMAGE, OfferCardVariant} from '../../const';
 import OfferCardList from '../../components/offer-card-list/offer-card-list';
+import Map from '../../components/map/map';
 
 type OfferProps = {
   offers: Offers;
@@ -150,7 +151,7 @@ export default function RoomPage({offers, reviews}: OfferProps ): JSX.Element {
             </section>
           </div>
         </div>
-        <section className="property__map map"></section>
+        <Map city={offer.city} offers={nearOffers} variant={OfferCardVariant.Near} />
       </section>
       <div className="container">
         <section className="near-places places">

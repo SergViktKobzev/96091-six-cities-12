@@ -1,6 +1,4 @@
-export type Offer = {
-  bedrooms: number;
-  city: {
+export type City = {
   location: {
   latitude: number;
   longitude: number;
@@ -8,6 +6,10 @@ export type Offer = {
   };
   name: string;
   };
+
+export type Offer = {
+  bedrooms: number;
+  city: City;
   description: string;
   goods: string[];
   host: {
@@ -31,7 +33,7 @@ export type Offer = {
   rating: number;
   title: string;
   type: string;
-  }
+  };
 
 export type Offers = Offer[];
 
