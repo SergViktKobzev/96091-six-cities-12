@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom';
 import {Offers} from '../../types/offers';
-import FavoriteOffersList from '../favorite-offers-list/favorite-offers-list';
+import {OfferCardVariant} from '../../const';
+import OfferCardList from '../offer-card-list/offer-card-list';
 
 
 type FavoriteOffersContainerProps = {
@@ -23,7 +24,10 @@ export default function FavoriteOffersContainer({favoriteOffers}: FavoriteOffers
                 </Link>
               </div>
             </div>
-            <FavoriteOffersList favoriteOffers={favoriteOffers} city={city} />
+            <OfferCardList
+              offers={favoriteOffers.filter((offer) => offer.city.name === city)}
+              variant={OfferCardVariant.Favorites}
+            />
           </li>
         ))}
       </ul>

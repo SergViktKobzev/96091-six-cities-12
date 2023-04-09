@@ -1,5 +1,5 @@
 type MapProps = {
-  activeOfferCard: number;
+  activeOfferCard?: number;
 }
 
 export default function Map({activeOfferCard}: MapProps): JSX.Element {

@@ -61,7 +61,7 @@ export const offers: Offers = [
   },
   {
     city: {
-      name: 'Brussels',
+      name: 'Dusseldorf',
       location: {
         latitude: 50.846557,
         longitude: 4.351697,

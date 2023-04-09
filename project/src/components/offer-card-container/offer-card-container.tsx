@@ -1,14 +1,15 @@
 import {Offers} from '../../types/offers';
-import OfferCardCityList from '../offer-card-city-list/offer-card-city-list';
+import OfferCardList from '../offer-card-list/offer-card-list';
 import Map from '../map/map';
 import {useState} from 'react';
+import {OfferCardVariant} from '../../const';
 
 type OfferCardContainerProps = {
   offers: Offers;
 };
 
 export default function OfferCardContainer({offers}: OfferCardContainerProps): JSX.Element {
-  const [activeOfferCard, setActiveOfferCard] = useState<number>(0);
+  const [activeOfferCard, setActiveOfferCard] = useState<number>();
 
   return (
     <div className="cities__places-container container">
@@ -30,7 +31,7 @@ export default function OfferCardContainer({offers}: OfferCardContainerProps): J
             <li className="places__option" tabIndex={0}>Top rated first</li>
           </ul>
         </form>
-        <OfferCardCityList offers={offers} onMouseOver={setActiveOfferCard}/>
+        <OfferCardList offers={offers} variant={OfferCardVariant.Cities} onMouseOver={setActiveOfferCard} />
       </section>
       <div className="cities__right-section">
         <Map activeOfferCard={activeOfferCard}/>

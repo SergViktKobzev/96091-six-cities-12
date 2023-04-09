@@ -13,6 +13,41 @@ export enum LayoutClassName {
   Default = 'page',
 }
 
+export enum OfferCardListClassName {
+  Cities = 'cities__places-list places__list tabs__content',
+  Near = 'near-places__list places__list',
+  Favorites = 'favorites__places',
+}
+
+export enum OfferCardClassName {
+  Cities = 'cities__card place-card',
+  Near = 'near-places__card place-card',
+  Favorites = 'favorites__card place-card',
+}
+
+export enum OfferCardImageClassName {
+  Cities = 'cities__image-wrapper place-card__image-wrapper',
+  Near = 'near-places__image-wrapper place-card__image-wrapper',
+  Favorites = 'favorites__image-wrapper place-card__image-wrapper',
+}
+
+export enum OfferCardVariant {
+  Cities = 'Cities',
+  Near = 'Near',
+  Favorites = 'Favorites',
+}
+
+export const OfferCardImageSize = {
+  Favorites: {
+    width: '150',
+    height: '110'
+  },
+  Default: {
+    width: '260',
+    height: '200'
+  }
+};
+
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
