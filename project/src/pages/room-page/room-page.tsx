@@ -1,11 +1,12 @@
-import OfferCardNearby from '../../components/offer-card-nearby/offer-card-nearby';
 import {Helmet} from 'react-helmet-async';
 import {Offers, Reviews} from '../../types/offers';
 import {useParams} from 'react-router-dom';
 import NotFoundPage from '../not-found-page/not-found-page';
 import ReviewsForm from '../../components/reviews-form/reviews-form';
 import {adaptRatingForRendering} from '../../utils/utils';
-import {MAX_NUMBER_OFFER_IMAGE} from '../../const';
+import {MAX_NUMBER_OFFER_IMAGE, OfferCardVariant} from '../../const';
+import OfferCardList from '../../components/offer-card-list/offer-card-list';
+import Map from '../../components/map/map';
 
 type OfferProps = {
   offers: Offers;
@@ -16,6 +17,10 @@ export default function RoomPage({offers, reviews}: OfferProps ): JSX.Element {
   const params = useParams();
   const currentId = Number(params.id);
   const offer = offers.find((item) => item.id === currentId);
+
+  // Временная логика получения офферов неподалеку. В дальнейшем они будут приходить с сервера.
+  const nearOffers = offers.filter((item) => item.id !== currentId);
+
   if (!offer) {
     return (<NotFoundPage />);
   }
@@ -40,11 +45,10 @@ export default function RoomPage({offers, reviews}: OfferProps ): JSX.Element {
         </div>
         <div className="property__container container">
           <div className="property__wrapper">
-            {isPremium ?
+            {isPremium &&
               <div className="property__mark">
                 <span>Premium</span>
-              </div> :
-              null}
+              </div>}
             <div className="property__name-wrapper">
               <h1 className="property__name">
                 {title}
@@ -147,16 +151,12 @@ export default function RoomPage({offers, reviews}: OfferProps ): JSX.Element {
             </section>
           </div>
         </div>
-        <section className="property__map map"></section>
+        <Map city={offer.city} offers={nearOffers} variant={OfferCardVariant.Near} />
       </section>
       <div className="container">
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
-          <div className="near-places__list places__list">
-            <OfferCardNearby offer={offer} />
-            <OfferCardNearby offer={offer} />
-            <OfferCardNearby offer={offer} />
-          </div>
+          <OfferCardList offers={nearOffers} variant={OfferCardVariant.Near} />
         </section>
       </div>
     </main>

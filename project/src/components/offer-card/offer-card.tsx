@@ -1,44 +1,38 @@
-import {generatePath, Link} from 'react-router-dom';
+import OfferCardInfo from '../offer-card-info/offer-card-info';
 import {Offer} from '../../types/offers';
-import {AppRoute} from '../../const';
-import {adaptRatingForRendering} from '../../utils/utils';
+import {useMemo} from 'react';
+import {OfferCardClassName, OfferCardVariant} from '../../const';
+import PremiumMark from '../premium-mark/premium-mark';
+import OfferCardImage from '../offer-card-image/offer-card-image';
 
 type OfferProps = {
   offer: Offer;
+  variant: OfferCardVariant;
+  onMouseOver?: (activeOfferCard: number) => void;
 };
 
-export default function OfferCard({offer}: OfferProps) {
-  const {price, title, type, rating, isFavorite, id} = offer;
+export default function OfferCard({offer, variant, onMouseOver}: OfferProps): JSX.Element {
+  const handleMouseOver = (): void => {
+    onMouseOver && onMouseOver(offer.id);
+  };
+
+  const className = useMemo(() => {
+    if (variant === OfferCardVariant.Cities) {
+      return OfferCardClassName.Cities;
+    }
+    if (variant === OfferCardVariant.Near) {
+      return OfferCardClassName.Near;
+    }
+    if (variant === OfferCardVariant.Favorites) {
+      return OfferCardClassName.Favorites;
+    }
+  }, [variant]);
+
   return (
-    <div className="place-card__info">
-      <div className="place-card__price-wrapper">
-        <div className="place-card__price">
-          <b className="place-card__price-value">&euro;{price} </b>
-          <span className="place-card__price-text">&#47;&nbsp;night</span>
-        </div>
-        <button className={
-          isFavorite ?
-            'place-card__bookmark-button place-card__bookmark-button--active button' :
-            'place-card__bookmark-button button'
-        }
-        type="button"
-        >
-          <svg className="place-card__bookmark-icon" width="18" height="19">
-            <use xlinkHref="#icon-bookmark"></use>
-          </svg>
-          <span className="visually-hidden">To bookmarks</span>
-        </button>
-      </div>
-      <div className="place-card__rating rating">
-        <div className="place-card__stars rating__stars">
-          <span style={{width: `${adaptRatingForRendering(rating)}%`}}></span>
-          <span className="visually-hidden">Rating</span>
-        </div>
-      </div>
-      <h2 className="place-card__name">
-        <Link to={generatePath(AppRoute.Room, {id: id.toString()})}>{title}</Link>
-      </h2>
-      <p className="place-card__type">{type}</p>
-    </div>
+    <article onMouseOver={onMouseOver && handleMouseOver} className={className}>
+      {offer.isPremium && <PremiumMark />}
+      <OfferCardImage offer={offer} variant={variant} />
+      <OfferCardInfo offer={offer} />
+    </article>
   );
 }

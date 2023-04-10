@@ -1,17 +1,21 @@
 import {Offers} from '../../types/offers';
-import OfferCardCityList from '../offer-card-city-list/offer-card-city-list';
+import OfferCardList from '../offer-card-list/offer-card-list';
+import Map from '../map/map';
+import {useState} from 'react';
+import {OfferCardVariant} from '../../const';
 
 type OfferCardContainerProps = {
-  offerCount: number;
   offers: Offers;
 };
 
-export default function OfferCardContainer({offerCount, offers}: OfferCardContainerProps): JSX.Element {
+export default function OfferCardContainer({offers}: OfferCardContainerProps): JSX.Element {
+  const [activeOfferCard, setActiveOfferCard] = useState<number>();
+
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">{offerCount} places to stay in Amsterdam</b>
+        <b className="places__found">{offers.length} places to stay in Amsterdam</b>
         <form className="places__sorting" action="#" method="get">
           <span className="places__sorting-caption">Sort by </span>
           <span className="places__sorting-type" tabIndex={0}>
@@ -27,11 +31,17 @@ export default function OfferCardContainer({offerCount, offers}: OfferCardContai
             <li className="places__option" tabIndex={0}>Top rated first</li>
           </ul>
         </form>
-        <OfferCardCityList offers={offers} />
+        <OfferCardList offers={offers} variant={OfferCardVariant.Cities} onMouseOver={setActiveOfferCard} />
       </section>
       <div className="cities__right-section">
-        <section className="cities__map map"></section>
+        <Map
+          city={offers[0].city}
+          offers={offers}
+          variant={OfferCardVariant.Cities}
+          activeOfferCard={activeOfferCard}
+        />
       </div>
     </div>
   );
 }
+
