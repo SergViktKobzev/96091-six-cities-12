@@ -8,7 +8,7 @@ type MapProps = {
   city: City;
   offers: Offers;
   variant: OfferCardVariant;
-  activeOfferCard?: number;
+  activeOfferCard: number;
 }
 
 const defaultIcon = new Icon({
@@ -45,7 +45,7 @@ export default function Map({city, offers, variant, activeOfferCard}: MapProps):
         });
 
         marker.setIcon(
-          activeOfferCard !== undefined && offer.id === activeOfferCard
+          offer.id === activeOfferCard
             ? activeIcon
             : defaultIcon
         ).addTo(map);

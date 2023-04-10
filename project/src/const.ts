@@ -51,7 +51,7 @@ export const OfferCardImageSize = {
     width: '260',
     height: '200'
   }
-};
+} as const;
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
@@ -67,6 +67,8 @@ export const RATING_TITLES = [
   { rating: 3, title: 'not bad' },
   { rating: 2, title: 'badly' },
   { rating: 1, title: 'terribly' },
-];
+] as const;
 
 export const MAX_NUMBER_OFFER_IMAGE = 6;
+
+export const MAX_REVIEWS_COUNT = 10;

@@ -9,7 +9,7 @@ type OfferCardContainerProps = {
 };
 
 export default function OfferCardContainer({offers}: OfferCardContainerProps): JSX.Element {
-  const [activeOfferCard, setActiveOfferCard] = useState<number>();
+  const [activeOfferCard, setActiveOfferCard] = useState<number>(0);
 
   return (
     <div className="cities__places-container container">
